@@ -114,6 +114,7 @@ class BorrowingRecordController {
             }
 
             record.finePaid = true;
+            record.fineAmount = 0;
             await record.save();
 
             const user = await User.findById(userId);
