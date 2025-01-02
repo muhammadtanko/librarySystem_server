@@ -85,7 +85,17 @@ class BorrowingRecordController {
             return { ok: false, message: error.message };
         }
     }
-
+    async getUserRecords(userId) {
+        try {
+          const records = await BorrowingRecord.find({ user: userId })
+            .populate('book', 'title author') // Populate book title and author
+            .populate('user', 'firstName lastName'); // Populate user firstName and lastName
+          
+          return { ok: true, payLoad: records };
+        } catch (error) {
+          return { ok: false, message: error.message };
+        }
+      }
 
     async payFine(data) {
         try {
