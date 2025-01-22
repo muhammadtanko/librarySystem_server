@@ -9,7 +9,7 @@ module.exports = () => {
     api.post('/', async (req, res) => {
         try {
             const { ok, payLoad, message } = await borrowingRecordController.borrowBook(req.body);
-            res.status(ok ? 201 : 500).json({ ok, payLoad, message });
+            res.status(201 ).json({ ok, payLoad, message });
         } catch (error) {
             res.status(500).json({ ok: false, message: error.message });
         }
@@ -28,8 +28,8 @@ module.exports = () => {
 
     api.post('/pay-fine', async (req, res) => {
         try {
-            // recordId,userId
-            const { ok, payLoad, message } = await borrowingRecordController.payFine(req.body);
+            const data = req.body;
+            const { ok, payLoad, message } = await borrowingRecordController.payFine(data);
             res.status(ok ? 200 : 400).json({ ok, payLoad, message });
         } catch (error) {
             res.status(500).json({ ok: false, message: error.message });

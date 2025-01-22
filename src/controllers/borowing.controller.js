@@ -1,6 +1,11 @@
 // Example Borrowing Record Controller
 const BorrowingRecord = require('../models/borowing.model');
 const Book = require("../models/book.model")
+const User = require("../models/user.model")
+
+
+
+
 class BorrowingRecordController {
 
 
@@ -41,7 +46,7 @@ class BorrowingRecordController {
 
     async returnBook(recordId) {
         try {
-            
+
 
             const record = await BorrowingRecord.findById(recordId).populate('book');
             if (!record) {
@@ -87,20 +92,19 @@ class BorrowingRecordController {
     }
     async getUserRecords(userId) {
         try {
-          const records = await BorrowingRecord.find({ user: userId })
-            .populate('book', 'title author') // Populate book title and author
-            .populate('user', 'firstName lastName'); // Populate user firstName and lastName
-          
-          return { ok: true, payLoad: records };
+            const records = await BorrowingRecord.find({ user: userId })
+                .populate('book', 'title author') // Populate book title and author
+                .populate('user', 'firstName lastName'); // Populate user firstName and lastName
+
+            return { ok: true, payLoad: records };
         } catch (error) {
-          return { ok: false, message: error.message };
+            return { ok: false, message: error.message };
         }
-      }
+    }
 
     async payFine(data) {
         try {
-            const { recordId, userId } = data;
-
+            const { recordId, userId } = data
             const record = await BorrowingRecord.findById(recordId);
             if (!record) {
                 return { ok: false, message: "Borrowing record not found" };

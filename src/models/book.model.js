@@ -6,6 +6,7 @@ const BookSchema = new Schema({
     author: { type: String, required: true },
     genre: { type: String },
     category: { type: String },
+    isbn: { type: String },
     publicationYear: { type: Number },
     copiesAvailable: { type: Number, default: 1 }, // Tracks available copies
     totalCopies: { type: Number, default: 1 }, // Total copies of the book
