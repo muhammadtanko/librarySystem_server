@@ -7,7 +7,6 @@ const borrowRoutes = require("./routes/borowing.route");
 const bookRoutes = require("./routes/book.route");
 const dashboardRoutes = require("./routes/dashboard.route")
 
-const { appPort } = require("./config")
 const express = require("express");
 const cors = require("cors")
 
@@ -22,6 +21,6 @@ app.use("/api/v1/book", bookRoutes());
 app.use("/api/v1/dashboard", dashboardRoutes());
 
 
-app.listen(appPort, () => {
-    console.log("App listening on port " + appPort);
+app.listen(4000, () => {
+    console.log("App listening on port 4000" );
 })
